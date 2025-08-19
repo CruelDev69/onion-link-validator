@@ -1,96 +1,55 @@
-````markdown
-# 🕵️ Onion Link Validator
+# Onion Link Validator  
 
-A Python tool to discover `.onion` hidden services by scraping popular indexes such as **Ahmia**, **Hidden Wiki**, and **Torch**.  
-Useful for research, OSINT, and darknet exploration.
+**Onion Link Validator** is a tool that checks the availability of `.onion` websites through the Tor network. Developed by **Ahad**.  
 
----
+## Features  
+- **Bulk Validation** – Test multiple `.onion` links at once.  
+- **Fast Results** – Uses concurrent requests for faster validation.  
+- **Error Handling** – Detects unreachable or offline services.  
 
-## ✨ Features
-- 🔎 Scrapes multiple onion directories
-- 📌 Collects and lists `.onion` URLs
-- ⚡ Lightweight and easy to extend
-- 🐍 Pure Python (no heavy dependencies)
-
----
-
-## 📦 Installation
-Clone the repository and install requirements:
-
-```bash
-git clone https://github.com/CruelDev69/onion-link-validator.git
-cd onion-link-validator
-pip install -r requirements.txt
-```
-
----
-
-## ⚙️ Tor Setup
-
-This project requires **Tor** to be installed and running.  
-We recommend using the **Tor Expert Bundle** (not the browser):
-
-- 🔗 [Download Tor Expert Bundle](https://www.torproject.org/download/tor/)  
-- Extract and run `tor.exe` (Windows) or `tor` (Linux/macOS).  
-- Default SOCKS proxy: `127.0.0.1:9050`
-
-```bash
-tor
-```
-
----
-
-## 🚀 Usage
-
-Run the scraper:
-
-```bash
-python main.py
-```
-
-Example output:
-
-```
-[16:47:38] [+] Found 15 potential onion addresses.
-[16:47:38] [*] ===================================
-[+] Scan Complete. Live onions:
-- http://exampleonion123.onion
-- http://anotherhiddenlink.onion
-```
-
----
-
-## ⚠️ Common Errors
-
-* `RemoteDisconnected`: Target onion service refused the connection.
-* `415 Client Error: Unsupported Media Type`: Some sites reject default headers.
-  👉 Try adding custom `User-Agent` and `Accept` headers in the scraper.
-
----
-
-## 📸 Screenshots
-
+## Screenshots  
 ![AHMIA](./assets/Screenshot_2025-08-20_031746.png)  
-![HIDDEN_WIKI](./assets/Screenshot_2025-08-20_031908.png)
-![TORCH](./assets/Screenshot_2025-08-20_032026.png)
+![HIDDEN_WIKI](./assets/Screenshot_2025-08-20_031908.png)  
+![TORCH](./assets/Screenshot_2025-08-20_032026.png)  
 
----
+## Installation  
 
-## 🛡️ Disclaimer
+### Prerequisites  
+- **Python >= 3.10**  
+- **Tor Expert Bundle** installed and running  
+- **Requests & Stem** (installed via `requirements.txt`)  
 
-This project is for **educational and research purposes only**.  
-The author does **not condone or encourage illegal activity**.  
-Use responsibly — you are solely responsible for how you use this tool.
+### Setup  
 
----
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/CruelDev69/onion-link-validator.git
+   cd onion-link-validator
 
-## ⭐ Contribute
+2. Install dependencies:
 
-Pull requests are welcome! If you’d like to add more onion directories or improve scraping logic, feel free to open an issue or PR.
+   ```bash
+   pip install -r requirements.txt
+   ```
 
----
+3. Start Tor Expert Bundle in the background.
 
-## 📜 License
+4. Run the script:
 
-MIT License © 2025 [Ahad](https://github.com/CruelDev69)
-````
+   ```bash
+   python3 main.py
+   ```
+
+## Notes
+
+* **Ensure Tor Expert Bundle is installed and running before starting.**
+* **Only use this tool for legal purposes.**
+* **Do not claim this script as your own.**
+
+## Contact
+
+* **Discord:** Ahad#3257
+* **Website:** [itscruel.cf](https://www.itscruel.cf)
+
+If you find this tool useful, consider giving the repository a ⭐!
+
