@@ -1,6 +1,6 @@
-# Onion Link Validator  
+# Dark Syenite  
 
-**Onion Link Validator** is a tool that checks the availability of `.onion` websites through the Tor network. Developed by **Ahad**.  
+**Dark Syenite** is a tool that checks the availability of `.onion` websites through the Tor network. Developed by **Ahad**.  
 
 ## Features  
 - **Bulk Validation** – Test multiple `.onion` links at once.  
