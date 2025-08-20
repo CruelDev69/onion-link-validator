@@ -1,4 +1,3 @@
-# colors.py
 from colorama import Fore, Style, init
 from datetime import datetime
 
@@ -6,7 +5,7 @@ init(autoreset=True)
 
 def log(message: str, level: str = "info") -> str:
     """
-    Returns a timestamped, colored log string with hacker-style tags.
+    Returns a timestamped, colored log string.
     
     Levels:
       success -> [+] (green)
