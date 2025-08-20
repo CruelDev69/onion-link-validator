@@ -99,7 +99,7 @@ def show_banner():
                                      .- |                                 
                                      `--'                                 
        by Ahad#3257/CruelDev69
-       repo: https://github.com.CruelDev69/onion-link-validator
+       repo: https://github.com/CruelDev69/onion-link-validator
 {Style.RESET_ALL}
 """
     print(banner)
