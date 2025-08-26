@@ -43,6 +43,7 @@
 ## Notes
 
 * **Ensure Tor Expert Bundle is installed and running before starting.**
+* **This tool is for educational purposes only.**
 * **Only use this tool for legal purposes.**
 * **Do not claim this script as your own.**
 
