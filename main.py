@@ -1,4 +1,3 @@
-# safe_onion_finder.py
 # Purpose: Legality-first onion finder that filters out illegal/risky categories.
 # Jurisdiction note (Pakistan/PECA 2016): This tool is designed to AVOID indexing/promoting illegal content.
 # It must only be used for research/educational purposes with lawful content.
