@@ -1,5 +1,5 @@
 # safe_onion_finder.py
-# Purpose: Legality-first onion finder that only queries Ahmia and filters out illegal/risky categories.
+# Purpose: Legality-first onion finder that filters out illegal/risky categories.
 # Jurisdiction note (Pakistan/PECA 2016): This tool is designed to AVOID indexing/promoting illegal content.
 # It must only be used for research/educational purposes with lawful content.
 
@@ -56,7 +56,6 @@ BLOCKED_KEYWORDS = {
 # ------------------------------
 
 def is_safe_query(query: str) -> bool:
-    """Check if the query contains illegal words."""
     q = query.lower()
     return not any(bad_word in q for bad_word in BLOCKED_KEYWORDS)
 
