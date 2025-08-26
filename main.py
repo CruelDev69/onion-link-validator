@@ -1,3 +1,8 @@
+# safe_onion_finder.py
+# Purpose: Legality-first onion finder that only queries Ahmia and filters out illegal/risky categories.
+# Jurisdiction note (Pakistan/PECA 2016): This tool is designed to AVOID indexing/promoting illegal content.
+# It must only be used for research/educational purposes with lawful content.
+
 import requests
 import re
 from colorama import Fore, Style
@@ -30,12 +35,36 @@ TORCH_URL = "http://searxingux6na3djgdrcfwutafxmmagerhbieihsgu7sgmjee3u777yd.oni
 
 ONION_REGEX = re.compile(r"(?:http://)?[a-z2-7]{56}\.onion")
 
+BLOCKED_KEYWORDS = {
+    # drugs
+    "drug", "narcotic", "coke", "cocaine", "heroin", "meth", "lsd", "weed", "cannabis",
+    # weapons
+    "gun", "weapon", "firearm", "explosive",
+    # fraud & crime services
+    "carding", "cvv", "fullz", "skimmer", "counterfeit", "fake id", "forged id",
+    "hack", "hacker for hire", "ransomware", "malware", "botnet", "ddos", "exploit",
+    # CSAM/obscene (zero tolerance)
+    "cp", "child", "lolita", "sex",
+    # terror / extremism
+    "isis", "terror", "extremist",
+    # other obvious banned markets/services
+    "hitman", "assassin", "murder for hire", "stolen data", "leakbase",
+}
+
 # ------------------------------
 # Search Functions
 # ------------------------------
 
+def is_safe_query(query: str) -> bool:
+    """Check if the query contains illegal words."""
+    q = query.lower()
+    return not any(bad_word in q for bad_word in BLOCKED_KEYWORDS)
+
 def search_ahmia(query):
     onions = set()
+    if not is_safe_query(query):
+        print(log("Query contains illegal or blocked keywords.", "info"))
+        return []
     for base in AHMIA_URLS:
         try:
             r = requests.get(f"{base}/search/?q={query}", headers=HEADERS, proxies=proxies, timeout=20)
@@ -46,8 +75,11 @@ def search_ahmia(query):
     return list(onions)
 
 
-def scrape_hidden_wiki():
+def scrape_hidden_wiki(query):
     onions = set()
+    if not is_safe_query(query):
+        print(log("Query contains illegal or blocked keywords.", "info"))
+        return []
     for base in HIDDEN_WIKI_MIRRORS:
         try:
             r = requests.get(base, headers=HEADERS, proxies=proxies, timeout=20)
@@ -60,6 +92,9 @@ def scrape_hidden_wiki():
 
 def search_torch(query):
     onions = set()
+    if not is_safe_query(query):
+        print(log("Query contains illegal or blocked keywords.", "info"))
+        return []
     try:
         r = requests.get(f"{TORCH_URL}/search?q={query}", headers=HEADERS, proxies=proxies, timeout=20)
         r.raise_for_status()
@@ -98,8 +133,13 @@ def show_banner():
 `-^--' ,'   `-' `-'  `  ,' `   `---' `--| `^---  ,' `-' `--'  `-'   `^--- 
                                      .- |                                 
                                      `--'                                 
-       by Ahad#3257/CruelDev69
+       by: Ahad#3257/CruelDev69
        repo: https://github.com/CruelDev69/onion-link-validator
+       disclaimer: 
+       - This tool applies strict keyword-based blocking to avoid illegal content.
+       - It is provided for research/educational and privacy-awareness purposes ONLY.
+       - Do not use this tool to seek or access illegal content. You are responsible for your use.
+       - In Pakistan (PECA 2016), facilitating access to illegal content/services can be a criminal offense.
 {Style.RESET_ALL}
 """
     print(banner)
@@ -131,7 +171,7 @@ if __name__ == "__main__":
         onions = search_ahmia(keyword)
     elif choice == "2":
         print(log("Scraping Hidden Wiki...", "info"))
-        onions = scrape_hidden_wiki()
+        onions = scrape_hidden_wiki(keyword)
     elif choice == "3":
         print(log(f"Searching Torch for '{keyword}'...", "info"))
         onions = search_torch(keyword)
